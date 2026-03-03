@@ -1,3 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Roboto+Slab:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @import "tailwindcss";
+
+@theme {
+    --font-kumbh: "Kumbh Sans", sans-serif;
+    --font-roboto: "Roboto Slab", serif;
+    --font-space: "Space Mono", monospace;
+}
