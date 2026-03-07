@@ -29,31 +29,130 @@
         </button>
         <!-- <img class="" src="./assets/icon-close.svg" alt=""> -->
       </header>
-      <div id="form" class="relative flex flex-col gap-6">
+      <form id="form" class="relative w-70 md:w-117 mx-auto mt-6 flex flex-col gap-6">
         <!-- Time settings -->
-        <div class="flex flex-col gap-4"></div>
-        <div class="flex flex-col md:flex-row">
-          <!-- form control timer -->
-
-          <!-- form control long break -->
-          <!-- form control short break-->
+        <div class="flex flex-col gap-4 pb-6 border-b border-gray-200">
+          <h2 class="text-[11px] font-bold leading-[auto] tracking-[4.23px] text-center md:text-left uppercase">Time
+            (Minutes)</h2>
+          <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
+            <!-- form control timer -->
+            <div class="grid grid-cols-2 md:grid-cols-1 md:gap-2 items-center">
+              <p class="text-[12px] text-[#1E213F] leading-[125%] tracking-[0px]">promodoro</p>
+              <!-- Custom input -->
+              <div class="w-full flex justify-between items-center px-4 py-3 bg-blue-50 rounded-[10px] overflow-hidden">
+                <!-- Number Input -->
+                <input type="number"
+                  class="bg-transparent w-full text-[13px] leading-[125%] tracking-[5px] font-bold text-[#1E213F] text-left focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  value="25" step="1" min="1" max="60">
+                <!-- buttons -->
+                <div class="flex flex-col text-right gap-2">
+                  <!-- Increment Button -->
+                  <button type="button" onclick="this.closest('div.w-full').querySelector('input').stepUp()"
+                    class="px-3  transition-colors cursor-pointer group">
+                    <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path class="group-hover:stroke-[#1E213F] transition-colors"
+                        d="M0.554688 5.20184L6.55469 1.20184L12.5547 5.20184" stroke="#BBBDCB" stroke-width="2" />
+                    </svg>
+                  </button>
+                  <!-- Decrement Button -->
+                  <button type="button" onclick="this.closest('div.w-full').querySelector('input').stepDown()"
+                    class="px-3 transition-colors cursor-pointer group">
+                    <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path class="group-hover:stroke-[#1E213F] transition-colors"
+                        d="M0.554688 0.832031L6.55469 4.83203L12.5547 0.832031" stroke="#BBBDCB" stroke-width="2" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- form control short break -->
+            <div class="grid grid-cols-2 md:grid-cols-1 md:gap-2 items-center">
+              <p class="text-[12px] text-[#1E213F] leading-[125%] tracking-[0px]">short break</p>
+              <!-- Custom input -->
+              <div class="w-full flex justify-between items-center px-4 py-3 bg-blue-50 rounded-[10px] overflow-hidden">
+                <!-- Number Input -->
+                <input type="number"
+                  class="bg-transparent w-full text-[13px] leading-[125%] tracking-[5px] font-bold text-[#1E213F] text-left focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  value="5" step="5" min="5" max="15">
+                <!-- buttons -->
+                <div class="flex flex-col text-right gap-2">
+                  <!-- Increment Button -->
+                  <button type="button" onclick="this.closest('div.w-full').querySelector('input').stepUp()"
+                    class="px-3  transition-colors cursor-pointer group">
+                    <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path class="group-hover:stroke-[#1E213F] transition-colors"
+                        d="M0.554688 5.20184L6.55469 1.20184L12.5547 5.20184" stroke="#BBBDCB" stroke-width="2" />
+                    </svg>
+                  </button>
+                  <!-- Decrement Button -->
+                  <button type="button" onclick="this.closest('div.w-full').querySelector('input').stepDown()"
+                    class="px-3 transition-colors cursor-pointer group">
+                    <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path class="group-hover:stroke-[#1E213F] transition-colors"
+                        d="M0.554688 0.832031L6.55469 4.83203L12.5547 0.832031" stroke="#BBBDCB" stroke-width="2" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- form control long break-->
+            <div class="grid grid-cols-2 md:grid-cols-1 md:gap-2 items-center">
+              <p class="text-[12px] text-[#1E213F] leading-[125%] tracking-[0px]">long break</p>
+              <!-- Custom input -->
+              <div class="w-full flex justify-between items-center px-4 py-3 bg-blue-50 rounded-[10px] overflow-hidden">
+                <!-- Number Input -->
+                <input type="number"
+                  class="bg-transparent w-full text-[13px] leading-[125%] tracking-[5px] font-bold text-[#1E213F] text-left focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  value="15" step="5" min="20" max="60" placeholder="15">
+                <!-- buttons -->
+                <div class="flex flex-col text-right gap-2">
+                  <!-- Increment Button -->
+                  <button type="button" onclick="this.closest('div.w-full').querySelector('input').stepUp()"
+                    class="px-3  transition-colors cursor-pointer group">
+                    <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path class="group-hover:stroke-[#1E213F] transition-colors"
+                        d="M0.554688 5.20184L6.55469 1.20184L12.5547 5.20184" stroke="#BBBDCB" stroke-width="2" />
+                    </svg>
+                  </button>
+                  <!-- Decrement Button -->
+                  <button type="button" onclick="this.closest('div.w-full').querySelector('input').stepDown()"
+                    class="px-3 transition-colors cursor-pointer group">
+                    <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path class="group-hover:stroke-[#1E213F] transition-colors"
+                        d="M0.554688 0.832031L6.55469 4.83203L12.5547 0.832031" stroke="#BBBDCB" stroke-width="2" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
         <!-- Font settings -->
-        <div class="flex flex-col gap-4"></div>
-        <div class="flex flex-col md:flex-row">
-          <!-- form control timer -->
-          <!-- form control long break -->
-          <!-- form control short break-->
-        </div>
-        <!-- Color settings -->
-        <div class="flex flex-col gap-4"></div>
-        <div class="flex flex-col md:flex-row">
-          <!-- form control timer -->
-          <!-- form control long break -->
-          <!-- form control short break-->
+        <div class="flex flex-col gap-4 pb-6 border-b border-gray-200">
+          <h2 class="text-[11px] font-bold leading-[auto] tracking-[4.23px] text-center md:text-left uppercase">Font
+          </h2>
+          <div class="flex flex-col md:flex-row">
+            <!-- form control timer -->
+            <!-- form control long break -->
+            <!-- form control short break-->
+          </div>
         </div>
 
-      </div>
+        <!-- Color settings -->
+        <div class="flex flex-col gap-4">
+          <h2 class="text-[11px] font-bold leading-[auto] tracking-[4.23px] text-center md:text-left uppercase">Color
+          </h2>
+          <div class="flex flex-col md:flex-row">
+            <!-- form control timer -->
+            <!-- form control long break -->
+            <!-- form control short break-->
+          </div>
+        </div>
+
+        <!-- Apply button -->
+        <Button>Apply</Button>
+      </form>
     </div>
 
   </div>
