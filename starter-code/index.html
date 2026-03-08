@@ -44,7 +44,7 @@
               <!-- Custom input -->
               <div class="w-full flex justify-between items-center px-4 py-3 bg-blue-50 rounded-[10px] overflow-hidden">
                 <!-- Number Input -->
-                <input type="number"
+                <input id="timer" type="number"
                   class="bg-transparent w-full text-[13px] leading-[125%] tracking-[5px] font-bold text-[#1E213F] text-left focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   value="25" step="1" min="1" max="60">
                 <!-- buttons -->
@@ -74,7 +74,7 @@
               <!-- Custom input -->
               <div class="w-full flex justify-between items-center px-4 py-3 bg-blue-50 rounded-[10px] overflow-hidden">
                 <!-- Number Input -->
-                <input type="number"
+                <input id="short-break" type="number"
                   class="bg-transparent w-full text-[13px] leading-[125%] tracking-[5px] font-bold text-[#1E213F] text-left focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   value="5" step="5" min="5" max="15">
                 <!-- buttons -->
@@ -104,9 +104,9 @@
               <!-- Custom input -->
               <div class="w-full flex justify-between items-center px-4 py-3 bg-blue-50 rounded-[10px] overflow-hidden">
                 <!-- Number Input -->
-                <input type="number"
+                <input id="long-break" type="number"
                   class="bg-transparent w-full text-[13px] leading-[125%] tracking-[5px] font-bold text-[#1E213F] text-left focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                  value="15" step="5" min="20" max="60" placeholder="15">
+                  value="20" step="5" min="20" max="60" placeholder="15">
                 <!-- buttons -->
                 <div class="flex flex-col text-right gap-2">
                   <!-- Increment Button -->
@@ -219,15 +219,15 @@
       <!-- Timer options -->
       <div id="timer-btns"
         class="grid grid-cols-3 w-full bg-blue-900 rounded-4xl h-16 items-center justify-items-center gap-2 p-2">
-        <button
+        <button id="timer-btn"
           class="font-bold w-full text-[14px] leading-[120%] tracking-[0px] text-blue-100/40 isActive [.isActive]:bg-red-400 [.isActive]:text-[#1E213F] rounded-3xl h-12 cursor-pointer">
           pomodoro
         </button>
-        <button
+        <button id="short-break-btn"
           class="font-bold w-full text-[14px] leading-[120%] tracking-[0px] text-blue-100/40 [.isActive]:bg-red-400 [.isActive]:text-[#1E213F] rounded-3xl h-12 cursor-pointer">
           short break
         </button>
-        <button
+        <button id="long-break-btn"
           class="font-bold w-full text-[14px] leading-[120%] tracking-[0px] text-blue-100/40 [.isActive]:bg-red-400 [.isActive]:text-[#1E213F] rounded-3xl h-12 cursor-pointer">
           long break
         </button>
@@ -248,9 +248,9 @@
                 00:00
               </div>
               <!-- Restart -->
-              <button id="toggle-start"
+              <button id="toggle-start-btn"
                 class="text-[14px] z-10 md:text-[16px] text-blue-100 leading-[120%] md:leading-[125%] tracking-[13px] md:tracking-[15px] font-bold uppercase cursor-pointer">
-                Pause
+                start
               </button>
             </div>
           </div>

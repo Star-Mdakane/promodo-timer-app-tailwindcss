@@ -12,28 +12,39 @@ const settings = document.getElementById("settings");
 const settingsClose = document.getElementById("close-settings");
 const svgCircle = document.getElementById("svg-circle");
 const applyBtn = document.getElementById("apply-btn");
+const time = document.getElementById("time");
+const timer = document.getElementById("timer");
+const form = document.getElementById("form");
+const shortBreak = document.getElementById("short-break");
+const longBreak = document.getElementById("long-break");
+const timerBtn = document.getElementById("toggle-start-btn");
 const timerSelect = document.querySelectorAll("#timer-btns button");
 const fonts = document.querySelectorAll("#fonts button");
 const colors = document.querySelectorAll("#colors button");
 
+
+// Open settings
 settings.addEventListener("click", (e) => {
     const settingsGroup = e.target.closest(".group\\/settings");
     settingsGroup.classList.add("isOpen");
 });
 
+// close settings
 settingsClose.addEventListener("click", (e) => {
     const settingsGroup = e.target.closest(".group\\/settings");
     settingsGroup.classList.remove("isOpen");
 });
 
-timerSelect.forEach(select => {
-    select.addEventListener("click", () => {
-        // select timer buttons, remove classes and add new ui class
-        timerSelect.forEach(btn => btn.classList.remove("isActive"));
-        select.classList.add("isActive");
-    })
-})
+// // Show active timer button
+// timerSelect.forEach(select => {
+//     select.addEventListener("click", () => {
+//         // select timer buttons, remove classes and add new ui class
+//         timerSelect.forEach(btn => btn.classList.remove("isActive"));
+//         select.classList.add("isActive");
+//     })
+// })
 
+// Select font for application
 fonts.forEach(select => {
     select.addEventListener("click", (e) => {
         // select body tag
@@ -52,6 +63,7 @@ fonts.forEach(select => {
     })
 })
 
+// Select color scheme for app
 colors.forEach(select => {
     select.addEventListener("click", (e) => {
         // select every element with theme color 
@@ -77,3 +89,96 @@ colors.forEach(select => {
         select.classList.add("isActive");
     })
 })
+
+
+// Timer logic
+
+let minutes;
+let seconds = 0;
+let timerRunning = false;
+let intervalId;
+let shortBreakTime;
+let longBreakTime;
+
+
+//Logic to update timer display
+const updateDisplay = () => {
+    time.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+};
+
+//function to countdown timer
+const timerRun = () => {
+    if (seconds === 0 && minutes > 0) {
+        minutes--;
+        seconds = 59;
+    } else if (seconds > 0) {
+        seconds--;
+    } else {
+        clearInterval(intervalId);
+        timerRunning = false;
+    }
+    updateDisplay();
+};
+
+const startTimer = () => {
+    timerBtn.textContent = 'pause';
+    timerRunning = true;
+    intervalId = setInterval(timerRun, 1000);
+}
+
+const pauseTimer = () => {
+    timerBtn.textContent = 'start';
+    clearInterval(intervalId);
+    timerRunning = false;
+}
+
+// start and pause the timer
+timerBtn.addEventListener("click", () => {
+    if (!timerRunning) {
+        startTimer();
+    } else {
+        pauseTimer();
+    }
+});
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const settingsGroup = e.target.closest(".group\\/settings");
+
+
+    let isValid = false;
+
+    minutes = timer.value;
+    shortBreakTime = shortBreak.value;
+    longBreakTime = longBreak.value;
+
+    updateTimerValues(minutes, shortBreakTime, longBreakTime);
+
+    settingsGroup.classList.remove("isOpen")
+
+    return {
+        minutes, shortBreakTime, longBreakTime
+    }
+});
+
+const updateTimerValues = (min, short, long) => {
+    // Show active timer button
+    timerSelect.forEach(select => {
+        select.addEventListener("click", () => {
+            // select timer buttons, remove classes and add new ui class
+            timerSelect.forEach(btn => btn.classList.remove("isActive"));
+            select.classList.add("isActive");
+
+            console.log(select.id);
+            if (select.id === "timer-btn") {
+                console.log(`${select.id} clicked: value:${min}`);
+                startTimer();
+            } else if (select.id === "short-break-btn") {
+                console.log(`${select.id} clicked: value:${short}`);
+            } else if (select.id === "long-break-btn") {
+                console.log(`${select.id} clicked: value:${long}`);
+
+            }
+        })
+    })
+}
