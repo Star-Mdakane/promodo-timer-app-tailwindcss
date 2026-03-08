@@ -10,6 +10,8 @@ setProgress(60)
 
 const settings = document.getElementById("settings");
 const settingsClose = document.getElementById("close-settings");
+const svgCircle = document.getElementById("svg-circle");
+const applyBtn = document.getElementById("apply-btn");
 const timerSelect = document.querySelectorAll("#timer-btns button");
 const fonts = document.querySelectorAll("#fonts button");
 const colors = document.querySelectorAll("#colors button");
@@ -52,7 +54,23 @@ fonts.forEach(select => {
 
 colors.forEach(select => {
     select.addEventListener("click", (e) => {
+        // select every element with theme color 
+        const targetId = select.getAttribute("data-color");
+        console.log(targetId);
 
+        // Change color of timer buttons
+        timerSelect.forEach(timerS => {
+            timerS.classList.remove("[.isActive]:bg-red-400", "[.isActive]:bg-cyan-300", "[.isActive]:bg-purple-400");
+            timerS.classList.add(`[.isActive]:bg-${targetId}`);
+        })
+
+        // change color of svg
+        svgCircle.classList.remove("text-red-400", "text-cyan-300", "text-purple-400");
+        svgCircle.classList.add(`text-${targetId}`);
+
+        // Change color of apply button
+        applyBtn.classList.remove("bg-red-400", "bg-cyan-300", "bg-purple-400");
+        applyBtn.classList.add(`bg-${targetId}`);
 
         // select colors, remove classes and add new ui class
         colors.forEach(btn => btn.classList.remove("isActive"));
