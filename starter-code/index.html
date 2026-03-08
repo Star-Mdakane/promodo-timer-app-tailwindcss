@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  <link rel="stylesheet" href="output.css" .css">
+  <link rel="stylesheet" href="output.css">
   <script src="script.js" defer></script>
   <title>Frontend Mentor | Pomodoro app</title>
 </head>
@@ -140,17 +140,17 @@
           </h2>
           <div id="fonts" class="w-full flex justify-center gap-4 md:justify-end">
             <!-- font kumbh-->
-            <button type="button"
+            <button data-font="font-kumbh" type="button"
               class="isActive font-kumbh w-10 h-10 text-[16px] text-[#1E213F] leading-[125%] tracking-[0px] font-bold bg-blue-50 rounded-full cursor-pointer [.isActive]:bg-[#161932] [.isActive]:text-white">
               Aa
             </button>
             <!-- font roboto-->
-            <button type="button"
+            <button data-font="font-roboto" type="button"
               class="font-roboto w-10 h-10 text-[16px] text-[#1E213F] leading-[125%] tracking-[0px] font-regular bg-blue-50 rounded-full cursor-pointer [.isActive]:bg-[#161932] [.isActive]:text-white">
               Aa
             </button>
             <!-- font space -->
-            <button type="button"
+            <button data-font="font-space" type="button"
               class="font-space w-10 h-10 text-[16px] text-[#1E213F] leading-[125%] tracking-[0px] font-regular bg-blue-50 rounded-full cursor-pointer [.isActive]:bg-[#161932] [.isActive]:text-white">
               Aa
             </button>
@@ -167,7 +167,7 @@
           </h2>
           <div id="colors" class="w-full flex justify-center gap-4 md:justify-end">
             <!-- color -->
-            <button type="button"
+            <button data-color="bg-red-400" type="button"
               class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-red-400 group isActive">
               <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="opacity-0 group-[.isActive]:opacity-100"
@@ -175,7 +175,7 @@
               </svg>
             </button>
             <!-- color -->
-            <button type="button"
+            <button data-color="bg-cyan-300" type="button"
               class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-cyan-300 group">
               <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="opacity-0 group-[.isActive]:opacity-100"
@@ -183,7 +183,7 @@
               </svg>
             </button>
             <!-- color -->
-            <button type="button"
+            <button data-color="bg-purple-400" type="button"
               class="w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-purple-400 group">
               <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="opacity-0 group-[.isActive]:opacity-100"
@@ -244,8 +244,8 @@
             <div class="flex flex-col">
               <!-- Time -->
               <div id="time"
-                class="text-[80px] md:text-[100px] text-blue-100 leading-[120%] md:leading-[125%] tracking-[-10px] md:tracking-[-5px] font-bold">
-                00 : 00
+                class="whitespace-nowrap text-[80px] md:text-[100px] text-blue-100 leading-[120%] md:leading-[125%] tracking-[-10px] md:tracking-[-5px] font-bold">
+                00:00
               </div>
               <!-- Restart -->
               <button id="toggle-start"

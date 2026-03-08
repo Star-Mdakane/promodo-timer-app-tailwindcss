@@ -26,20 +26,35 @@ settingsClose.addEventListener("click", (e) => {
 
 timerSelect.forEach(select => {
     select.addEventListener("click", () => {
+        // select timer buttons, remove classes and add new ui class
         timerSelect.forEach(btn => btn.classList.remove("isActive"));
         select.classList.add("isActive");
     })
 })
 
 fonts.forEach(select => {
-    select.addEventListener("click", () => {
+    select.addEventListener("click", (e) => {
+        // select body tag
+        const settingsGroup = e.target.closest(".group\\/settings");
+        const targetId = select.getAttribute("data-font");
+        console.log(targetId);
+
+        // remove current font and add selected
+        settingsGroup.classList.remove("font-kumbh", "font-roboto", "font-space");
+        settingsGroup.classList.add(targetId);
+
+
+        // select fonts, remove classes and add new ui class
         fonts.forEach(btn => btn.classList.remove("isActive"));
         select.classList.add("isActive");
     })
 })
 
 colors.forEach(select => {
-    select.addEventListener("click", () => {
+    select.addEventListener("click", (e) => {
+
+
+        // select colors, remove classes and add new ui class
         colors.forEach(btn => btn.classList.remove("isActive"));
         select.classList.add("isActive");
     })
