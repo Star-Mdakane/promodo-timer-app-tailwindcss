@@ -78,7 +78,9 @@ colors.forEach(select => {
 // Timer logic
 
 let minutes = parseInt(timer.value) || 25;
+let displayMinutes = minutes;
 let seconds = 0;
+let displaySeconds = seconds;
 let timerRunning = false;
 let intervalId;
 let shortBreakTime;
@@ -99,7 +101,7 @@ function updateProgress() {
 
 //Logic to update timer display
 const updateDisplay = () => {
-    time.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    time.textContent = `${String(displayMinutes).padStart(2, '0')}:${String(displaySeconds).padStart(2, '0')}`;
 };
 
 //function to countdown timer
@@ -108,7 +110,7 @@ const timerRun = () => {
         remainingSeconds--;
 
         // Convert total remaining seconds back to Min:Sec for display
-        minutes = Math.floor(remainingSeconds / 60);
+        displayMinutes = Math.floor(remainingSeconds / 60);
         seconds = remainingSeconds % 60;
 
         updateDisplay();
