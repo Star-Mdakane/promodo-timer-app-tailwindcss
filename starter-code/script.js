@@ -78,7 +78,7 @@ colors.forEach(select => {
 
 // Timer logic
 
-let minutes = 25;
+let minutes;
 let seconds = 0;
 let timerRunning = false;
 let intervalId;
