@@ -154,6 +154,7 @@ reset.addEventListener("click", () => {
     minutes = 25;
     seconds = 0;
     updateDisplay();
+    updateProgress();
 })
 
 form.addEventListener("submit", (e) => {
@@ -188,6 +189,7 @@ const updateTimerValues = (min, short, long) => {
                 minutes = min;
                 seconds = 0;
                 updateDisplay();
+                updateProgress();
 
             } else if (select.id === "short-break-btn") {
                 console.log(`${select.id} clicked: value:${short}`);
@@ -196,6 +198,7 @@ const updateTimerValues = (min, short, long) => {
                 minutes = short;
                 seconds = 0;
                 updateDisplay();
+                updateProgress();
 
             } else if (select.id === "long-break-btn") {
                 console.log(`${select.id} clicked: value:${long}`);
@@ -204,6 +207,7 @@ const updateTimerValues = (min, short, long) => {
                 minutes = long;
                 seconds = 0;
                 updateDisplay();
+                updateProgress()
             }
         })
     })
