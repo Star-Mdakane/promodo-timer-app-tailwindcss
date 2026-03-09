@@ -92,7 +92,8 @@ const getTotalSeconds = () => minutes * 60;
 const circumference = 282.74;
 
 function updateProgress() {
-    const offset = circumference - (1 - remainingSeconds / getTotalSeconds()) * circumference;
+    const progress = remainingSeconds / getTotalSeconds();
+    const offset = circumference * (1 - progress);
     svgCircle.style.strokeDashoffset = offset;
 }
 
