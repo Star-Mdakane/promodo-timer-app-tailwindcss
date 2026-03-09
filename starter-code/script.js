@@ -88,13 +88,15 @@ let longBreakTime;
 let totalSeconds = minutes * 60;
 let remainingSeconds = totalSeconds;
 
+const getTotalSeconds = () => minutes * 60;
+
 const circumference = 282.74;
 
 function updateProgress() {
     // const totalSeconds = minutes * 60 + seconds;
     // const elapsedSeconds = totalSeconds - (minutes * 60 + seconds);
     // console.log(elapsedSeconds);
-    const offset = (remainingSeconds / totalSeconds) * circumference;
+    const offset = (remainingSeconds / getTotalSeconds()) * circumference;
     // const offset = circumference - (elapsedSeconds / totalSeconds) * circumference;
     svgCircle.style.strokeDashoffset = offset;
 }
@@ -140,14 +142,15 @@ const timerRun = () => {
         // Reset to whatever the input value is
         minutes = parseInt(timer.value) || 25;
         seconds = 0;
+        remainingSeconds = getTotalSeconds();
     }
 };
 
 const startTimer = () => {
     timerBtn.textContent = 'pause';
     timerRunning = true;
-    intervalId = setInterval(timerRun, 1000);
-    remainingSeconds = minutes * 60 + seconds;
+    remainingSeconds = getTotalSeconds();
+     intervalId = setInterval(timerRun, 1000);
 }
 
 const pauseTimer = () => {
