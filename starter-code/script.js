@@ -1,5 +1,4 @@
 
-
 const circle = document.querySelector(".progress-circle")
 const settings = document.getElementById("settings");
 const settingsClose = document.getElementById("close-settings");
@@ -78,7 +77,7 @@ colors.forEach(select => {
 
 // Timer logic
 
-let minutes;
+let minutes = parseInt(timer.value) || 25;
 let seconds = 0;
 let timerRunning = false;
 let intervalId;
@@ -86,18 +85,14 @@ let shortBreakTime;
 let longBreakTime;
 // let remainingSeconds;
 let totalSeconds = minutes * 60;
-let remainingSeconds = totalSeconds;
+let remainingSeconds = minutes * 60;
 
 const getTotalSeconds = () => minutes * 60;
 
 const circumference = 282.74;
 
 function updateProgress() {
-    // const totalSeconds = minutes * 60 + seconds;
-    // const elapsedSeconds = totalSeconds - (minutes * 60 + seconds);
-    // console.log(elapsedSeconds);
     const offset = (remainingSeconds / getTotalSeconds()) * circumference;
-    // const offset = circumference - (elapsedSeconds / totalSeconds) * circumference;
     svgCircle.style.strokeDashoffset = offset;
 }
 
@@ -108,23 +103,6 @@ const updateDisplay = () => {
 
 //function to countdown timer
 const timerRun = () => {
-    // if (seconds === 0 && minutes > 0) {
-    //     minutes--;
-    //     seconds = 59;
-    // } else if (seconds > 0) {
-    //     seconds--;
-    // } else {
-    //     clearInterval(intervalId);
-    //     timerBtn.textContent = 'restart';
-    //     minutes = timer.value;
-    //     timerRunning = false;
-    // }
-    // remainingSeconds--;
-    // minutes = Math.floor(remainingSeconds / 60);
-    // seconds = remainingSeconds % 60;
-    // updateDisplay();
-    // updateProgress();
-
     if (remainingSeconds > 0) {
         remainingSeconds--;
 
@@ -139,7 +117,6 @@ const timerRun = () => {
         clearInterval(intervalId);
         timerBtn.textContent = 'restart';
         timerRunning = false;
-        // Reset to whatever the input value is
         minutes = parseInt(timer.value) || 25;
         seconds = 0;
         remainingSeconds = getTotalSeconds();
@@ -150,7 +127,8 @@ const startTimer = () => {
     timerBtn.textContent = 'pause';
     timerRunning = true;
     remainingSeconds = getTotalSeconds();
-     intervalId = setInterval(timerRun, 1000);
+    intervalId = setInterval(timerRun, 1000);
+    updateProgress();
 }
 
 const pauseTimer = () => {
