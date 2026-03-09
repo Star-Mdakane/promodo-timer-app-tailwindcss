@@ -111,7 +111,7 @@ const timerRun = () => {
 
         // Convert total remaining seconds back to Min:Sec for display
         displayMinutes = Math.floor(remainingSeconds / 60);
-        seconds = remainingSeconds % 60;
+        displaySeconds = remainingSeconds % 60;
 
         updateDisplay();
         updateProgress();
