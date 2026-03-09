@@ -1,17 +1,11 @@
+
+
 const circle = document.querySelector(".progress-circle")
-const circumference = 282.74;
-
-function setProgress(percent) {
-    const offset = circumference - (percent / 100 * circumference);
-    circle.style.strokeDashoffset = offset;
-}
-
-setProgress(60)
-
 const settings = document.getElementById("settings");
 const settingsClose = document.getElementById("close-settings");
 const svgCircle = document.getElementById("svg-circle");
 const applyBtn = document.getElementById("apply-btn");
+const reset = document.getElementById("pomodoro");
 const time = document.getElementById("time");
 const timer = document.getElementById("timer");
 const form = document.getElementById("form");
@@ -34,15 +28,6 @@ settingsClose.addEventListener("click", (e) => {
     const settingsGroup = e.target.closest(".group\\/settings");
     settingsGroup.classList.remove("isOpen");
 });
-
-// // Show active timer button
-// timerSelect.forEach(select => {
-//     select.addEventListener("click", () => {
-//         // select timer buttons, remove classes and add new ui class
-//         timerSelect.forEach(btn => btn.classList.remove("isActive"));
-//         select.classList.add("isActive");
-//     })
-// })
 
 // Select font for application
 fonts.forEach(select => {
@@ -93,13 +78,26 @@ colors.forEach(select => {
 
 // Timer logic
 
-let minutes;
+let minutes = 25;
 let seconds = 0;
 let timerRunning = false;
 let intervalId;
 let shortBreakTime;
 let longBreakTime;
+// let remainingSeconds;
+let totalSeconds = minutes * 60;
+let remainingSeconds = totalSeconds;
 
+const circumference = 282.74;
+
+function updateProgress() {
+    // const totalSeconds = minutes * 60 + seconds;
+    // const elapsedSeconds = totalSeconds - (minutes * 60 + seconds);
+    // console.log(elapsedSeconds);
+    const offset = (remainingSeconds / totalSeconds) * circumference;
+    // const offset = circumference - (elapsedSeconds / totalSeconds) * circumference;
+    svgCircle.style.strokeDashoffset = offset;
+}
 
 //Logic to update timer display
 const updateDisplay = () => {
@@ -108,22 +106,48 @@ const updateDisplay = () => {
 
 //function to countdown timer
 const timerRun = () => {
-    if (seconds === 0 && minutes > 0) {
-        minutes--;
-        seconds = 59;
-    } else if (seconds > 0) {
-        seconds--;
+    // if (seconds === 0 && minutes > 0) {
+    //     minutes--;
+    //     seconds = 59;
+    // } else if (seconds > 0) {
+    //     seconds--;
+    // } else {
+    //     clearInterval(intervalId);
+    //     timerBtn.textContent = 'restart';
+    //     minutes = timer.value;
+    //     timerRunning = false;
+    // }
+    // remainingSeconds--;
+    // minutes = Math.floor(remainingSeconds / 60);
+    // seconds = remainingSeconds % 60;
+    // updateDisplay();
+    // updateProgress();
+
+    if (remainingSeconds > 0) {
+        remainingSeconds--;
+
+        // Convert total remaining seconds back to Min:Sec for display
+        minutes = Math.floor(remainingSeconds / 60);
+        seconds = remainingSeconds % 60;
+
+        updateDisplay();
+        updateProgress();
     } else {
+        // Timer Finished
         clearInterval(intervalId);
+        timerBtn.textContent = 'restart';
         timerRunning = false;
+        // Reset to whatever the input value is
+        minutes = parseInt(timer.value) || 25;
+        seconds = 0;
     }
-    updateDisplay();
 };
 
 const startTimer = () => {
     timerBtn.textContent = 'pause';
     timerRunning = true;
     intervalId = setInterval(timerRun, 1000);
+    remainingSeconds = minutes * 60 + seconds;
 }
 
 const pauseTimer = () => {
@@ -141,24 +165,29 @@ timerBtn.addEventListener("click", () => {
     }
 });
 
+reset.addEventListener("click", () => {
+    clearInterval(intervalId);
+    timerBtn.textContent = 'start';
+
+    minutes = 25;
+    seconds = 0;
+    updateDisplay();
+})
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const settingsGroup = e.target.closest(".group\\/settings");
 
 
-    let isValid = false;
+    // let isValid = false;
 
-    minutes = timer.value;
+    taskTime = timer.value;
     shortBreakTime = shortBreak.value;
     longBreakTime = longBreak.value;
 
-    updateTimerValues(minutes, shortBreakTime, longBreakTime);
+    updateTimerValues(taskTime, shortBreakTime, longBreakTime);
 
     settingsGroup.classList.remove("isOpen")
-
-    return {
-        minutes, shortBreakTime, longBreakTime
-    }
 });
 
 const updateTimerValues = (min, short, long) => {
@@ -172,12 +201,27 @@ const updateTimerValues = (min, short, long) => {
             console.log(select.id);
             if (select.id === "timer-btn") {
                 console.log(`${select.id} clicked: value:${min}`);
-                startTimer();
+                clearInterval(intervalId);
+                timerBtn.textContent = 'start';
+                minutes = min;
+                seconds = 0;
+                updateDisplay();
+
             } else if (select.id === "short-break-btn") {
                 console.log(`${select.id} clicked: value:${short}`);
+                clearInterval(intervalId);
+                timerBtn.textContent = 'start';
+                minutes = short;
+                seconds = 0;
+                updateDisplay();
+
             } else if (select.id === "long-break-btn") {
                 console.log(`${select.id} clicked: value:${long}`);
-
+                clearInterval(intervalId);
+                timerBtn.textContent = 'start';
+                minutes = long;
+                seconds = 0;
+                updateDisplay();
             }
         })
     })
