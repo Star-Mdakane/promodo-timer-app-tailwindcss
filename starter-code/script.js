@@ -1,4 +1,3 @@
-
 const circle = document.querySelector(".progress-circle")
 const settings = document.getElementById("settings");
 const settingsClose = document.getElementById("close-settings");
@@ -14,7 +13,6 @@ const timerBtn = document.getElementById("toggle-start-btn");
 const timerSelect = document.querySelectorAll("#timer-btns button");
 const fonts = document.querySelectorAll("#fonts button");
 const colors = document.querySelectorAll("#colors button");
-
 
 // Open settings
 settings.addEventListener("click", (e) => {
@@ -34,12 +32,10 @@ fonts.forEach(select => {
         // select body tag
         const settingsGroup = e.target.closest(".group\\/settings");
         const targetId = select.getAttribute("data-font");
-        console.log(targetId);
 
         // remove current font and add selected
         settingsGroup.classList.remove("font-kumbh", "font-roboto", "font-space");
         settingsGroup.classList.add(targetId);
-
 
         // select fonts, remove classes and add new ui class
         fonts.forEach(btn => btn.classList.remove("isActive"));
@@ -52,7 +48,6 @@ colors.forEach(select => {
     select.addEventListener("click", (e) => {
         // select every element with theme color 
         const targetId = select.getAttribute("data-color");
-        console.log(targetId);
 
         // Change color of timer buttons
         timerSelect.forEach(timerS => {
@@ -74,9 +69,7 @@ colors.forEach(select => {
     })
 })
 
-
 // Timer logic
-
 let minutes = parseInt(timer.value) || 25;
 let displayMinutes = minutes;
 let seconds = 0;
@@ -85,23 +78,35 @@ let timerRunning = false;
 let intervalId;
 let shortBreakTime;
 let longBreakTime;
-// let remainingSeconds;
-let totalSeconds = minutes * 60;
 let remainingSeconds = minutes * 60;
+const circumference = 282.74;
 
 const getTotalSeconds = () => minutes * 60;
-
-const circumference = 282.74;
 
 function updateProgress() {
     const progress = remainingSeconds / getTotalSeconds();
     const offset = circumference * progress;
     svgCircle.style.strokeDashoffset = offset;
+    svgCircle.style.transition = 'stroke-dashoffset 1s linear';
 }
 
 //Logic to update timer display
 const updateDisplay = () => {
     time.textContent = `${String(displayMinutes).padStart(2, '0')}:${String(displaySeconds).padStart(2, '0')}`;
+};
+
+const timerDone = () => {
+    const themeColor = document.querySelector(".isActive[data-color]").getAttribute("data-color");
+    let flashCount = 0;
+    const flashInterval = setInterval(() => {
+        if (flashCount % 2 === 0) {
+            svgCircle.style.stroke = `var(--${themeColor})`;
+        } else {
+            svgCircle.style.stroke = '';
+        }
+        flashCount++;
+        if (flashCount >= 20) clearInterval(flashInterval);
+    }, 500);
 };
 
 //function to countdown timer
@@ -123,6 +128,7 @@ const timerRun = () => {
         minutes = parseInt(timer.value) || 25;
         seconds = 0;
         remainingSeconds = getTotalSeconds();
+        timerDone();
     }
 };
 
@@ -149,12 +155,14 @@ timerBtn.addEventListener("click", () => {
     }
 });
 
+//Promodoro button used as reset button
 reset.addEventListener("click", () => {
     clearInterval(intervalId);
     timerBtn.textContent = 'start';
 
-    minutes = 25;
-    seconds = 0;
+    displayMinutes = minutes;
+    displaySeconds = 0;
+    remainingSeconds = getTotalSeconds();
     updateDisplay();
     updateProgress();
 })
@@ -162,9 +170,6 @@ reset.addEventListener("click", () => {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const settingsGroup = e.target.closest(".group\\/settings");
-
-
-    // let isValid = false;
 
     taskTime = timer.value;
     shortBreakTime = shortBreak.value;
@@ -185,7 +190,6 @@ const updateTimerValues = (min, short, long) => {
 
             console.log(select.id);
             if (select.id === "timer-btn") {
-                console.log(`${select.id} clicked: value:${min}`);
                 clearInterval(intervalId);
                 timerBtn.textContent = 'start';
                 minutes = min;
@@ -194,7 +198,6 @@ const updateTimerValues = (min, short, long) => {
                 updateProgress();
 
             } else if (select.id === "short-break-btn") {
-                console.log(`${select.id} clicked: value:${short}`);
                 clearInterval(intervalId);
                 timerBtn.textContent = 'start';
                 minutes = short;
@@ -203,7 +206,6 @@ const updateTimerValues = (min, short, long) => {
                 updateProgress();
 
             } else if (select.id === "long-break-btn") {
-                console.log(`${select.id} clicked: value:${long}`);
                 clearInterval(intervalId);
                 timerBtn.textContent = 'start';
                 minutes = long;

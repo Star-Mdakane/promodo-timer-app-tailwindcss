@@ -49,6 +49,21 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ## My process
 
+1. I started designing the layout first which is quite simple.
+2. Designing the progress bar area was a little bit challenging. 
+- I initially tried using two svgs where one was track and the other was the progress bar.
+- Seeing the graddiend and box shadows I had to change the design and use one with a single svg but many layers of html elements for styling.
+3. I then went to the settings page, I thought if I should make it on another html page, sibling element or just the one which I ultimately chose of an overlay type with a fixed position and scale instead of translate for simplicity.
+4. To ccombat the font system I used a font on the body tag which I couldjust grab via js and change it on select.
+5. The color was a bit tedious as I had to get all the instances with color and had to change them especially the timer buttons where they are in a container.
+
+Problems
+- I had no idea of what or how a promodo is and its function.
+- The gradient of background also had me going for a while.
+- What made it more difficult is that i thought the breaks had to interrupt the promodo timer and it had to continue after the break was done.
+- Getting the time to work with the progress bar was a nightmare. I did not understand the offset, dasharray and those terms so it started at certain points, went on wrong direction, would rotate around and start again on same timer while running.
+- The time display also broke on different fonts so I used nowrap and it did not reset when changig the time options.
+
 ### Built with
 
 - Semantic HTML5 markup
@@ -84,28 +99,20 @@ If you want more help with writing markdown, we'd recommend checking out [The Ma
 
 **Note: Delete this note and the content within this section and replace with your own learnings.**
 
-### Continued development
-
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- I googled Promodoro after being stuck and had an idea what it was.
 
 ### AI Collaboration
 
 Describe how you used AI tools (if any) during this project. This helps demonstrate your ability to work effectively with AI assistants.
 
 - What tools did you use (e.g., ChatGPT, Claude, GitHub Copilot)?
+- The only AI I use is Meta AI which I like since it makes mistakes and I have to help it help me ulike making it do all the work for me.
 - How did you use them (e.g., debugging, generating boilerplate, brainstorming solutions)?
+- We were brainstorming and debugging at times.
 - What worked well? What didn't?
-
-**Note: Delete this note and the content above if you didn't use AI, or replace with your own experience.**
+- There was no code which worked initially so basically it was giving me examples of how to approach a problem whenever i was stuck.
 
 ## Author
 
@@ -117,6 +124,5 @@ Describe how you used AI tools (if any) during this project. This helps demonstr
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+Meta AI
 
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
