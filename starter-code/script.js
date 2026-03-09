@@ -212,7 +212,7 @@ const updateTimerValues = (min, short, long) => {
                 updateProgress()
             }
             displayMinutes = minutes;
-            seconds = 0;
+            displaySeconds = 0;
             remainingSeconds = getTotalSeconds();
             updateDisplay();
             updateProgress();
